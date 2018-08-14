@@ -14,3 +14,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'customer'], function () use ($router) {
+    $router->get('getcustomer/{id}', ['uses' => 'CustomerController@getCustomer']);
+});
+
+$router->group(['prefix' => 'product'], function () use ($router) {
+    $router->get('getproduct/{id}', ['uses' => 'ProductController@getProduct']);
+});
