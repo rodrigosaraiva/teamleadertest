@@ -22,3 +22,7 @@ $router->group(['prefix' => 'customer'], function () use ($router) {
 $router->group(['prefix' => 'product'], function () use ($router) {
     $router->get('getproduct/{id}', ['uses' => 'ProductController@getProduct']);
 });
+
+$router->group(['prefix' => 'v1'], function () use ($router) {
+    $router->post('getdiscount', ['uses' => 'DiscountController@getDiscount']);
+});

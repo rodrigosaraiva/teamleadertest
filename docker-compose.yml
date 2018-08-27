@@ -5,6 +5,8 @@ nginx:
     - php
   ports:
     - "80:80"
+  expose:
+    - "80"
 php:
   build: images/php
   volumes:
@@ -17,7 +19,7 @@ php:
     - "9000:9000"
   environment:
     APP_ENV: local
-    APP_DEBUG: 'true'
+    APP_DEBUG: 'false'
     APP_KEY: D34jjaujd!djFRGFD34jjaujd!djFRGF
     APP_TIMEZONE: UTC
     APP_LOCALE: en

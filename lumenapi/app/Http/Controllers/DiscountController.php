@@ -2,17 +2,29 @@
 
 namespace App\Http\Controllers;
 
-class ExampleController extends Controller
+use App\AppliedDiscount;
+use App\Business\Discount;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+class DiscountController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @param Request $orderRequest
+     * @return JsonResponse
      */
-    public function __construct()
+    public function getDiscount(Request $orderRequest)
     {
-        //
-    }
+        try {
+            $orderContent = json_decode($orderRequest->getContent());
+            $order = collect($orderContent);
 
-    //
+            $discount = new Discount($order);
+            $discountedOrder = $discount->applyDiscounts(new AppliedDiscount());
+        } catch (\Exception $e) {
+            return new JsonResponse($e->getMessage(), $e->getCode());
+        }
+
+        return new JsonResponse($discountedOrder, 200);
+    }
 }
