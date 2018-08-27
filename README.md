@@ -30,7 +30,7 @@ All the project and tests were build with the data provided to facilitate the te
 
 There is some technical debts described at the code to show the understanding of agile development.
 
-The project will be run at port 80, so it is necessary to shutdown services running at this port.
+The project will run at port 80, so it is necessary to shutdown services running at this port.
 
 There is a database registering the discounts applied to the orders.
 
