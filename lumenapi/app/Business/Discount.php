@@ -52,7 +52,7 @@ class Discount
             $this->getTwoOrMoreToolsCheapestDiscount(ApiFactory::build('product'), $appliedDiscount);
             $this->getFiveSwitchesDiscount(ApiFactory::build('product'), $appliedDiscount);
             $this->getRevenueDiscount(ApiFactory::build('customer'), $appliedDiscount);
-        } catch (\Exception $e) {
+        } catch (GuzzleHttp\Exception\RequestException $e) {
             throw $e;
         }
 
