@@ -37,7 +37,12 @@ class Discount
         $this->order = $order;
     }
 
-    public function applyDiscounts(AppliedDiscount $appliedDiscount)
+    /**
+     * @param AppliedDiscount $appliedDiscount
+     * @return Collection
+     * @throws GuzzleHttp\Exception\GuzzleException
+     */
+    public function applyDiscounts(AppliedDiscount $appliedDiscount) : Collection
     {
         try {
             /**
@@ -48,7 +53,7 @@ class Discount
             $this->getFiveSwitchesDiscount(ApiFactory::build('product'), $appliedDiscount);
             $this->getRevenueDiscount(ApiFactory::build('customer'), $appliedDiscount);
         } catch (\Exception $e) {
-            return $e;
+            throw $e;
         }
 
         return $this->order;
